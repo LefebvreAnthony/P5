@@ -1,3 +1,4 @@
+/*
 
 // boucle pour chercher dans l'api touts les articles, et créer uen card pour chaque article 
 const allTeddies = async function(){
@@ -91,3 +92,23 @@ for( i=0; i < detailsProduit.length-1; i++){
     });
 }
 
+*/
+
+
+const allTeddies = async function(){
+    
+    let response = await fetch("http://localhost:3000/api/teddies");
+    if(response.ok){
+        const data = await response.json();
+        console.log(data.length)
+        
+        for(i= 0; i < data.length ; i++){
+            const cardProduit = document.getElementById('produit-card');
+            console.log(cardProduit)
+            const addCard = cardProduit.cloneNode(true);
+            document.body.appendChild(addCard);
+        }
+    }
+}
+
+allTeddies();
