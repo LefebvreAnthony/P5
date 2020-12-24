@@ -100,13 +100,22 @@ const allTeddies = async function(){
     let response = await fetch("http://localhost:3000/api/teddies");
     if(response.ok){
         const data = await response.json();
-        console.log(data.length)
+        //console.log(data.length)
         
         for(i= 0; i < data.length ; i++){
             const cardProduit = document.getElementById('produit-card');
-            console.log(cardProduit)
+            //console.log(cardProduit)
+            
+            
+            const imgProduit = document.getElementById('img-produit');
+            imgProduit.src = data[i].imageUrl;
+            
+            const nameProduit = document.getElementById('nom-produit');
+            nameProduit.innerText = data[i].name;
+
             const addCard = cardProduit.cloneNode(true);
-            document.body.appendChild(addCard);
+
+            document.getElementById('main-produit').appendChild(addCard);
         }
     }
 }
