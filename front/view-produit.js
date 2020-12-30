@@ -1,19 +1,41 @@
 
+let imgProduit = document.getElementById('img-produit');
+let descriptionProduit = document.getElementById('description-produit');
+let colorSelect = document.getElementById('color-produit');
+let nameProduit = document.getElementById('name-produit');
+let priceProduit = document.getElementById('price-produit');
 
-let prod = async function(){
+
+const focusTeddie = async function(){
+
     let response = await fetch("http://localhost:3000/api/teddies");
 
-if(response.ok){
-    let data = await response.json();
-    console.log(data);
+    if(response.ok){
 
-    const norbet = data[0];
-    console.log(norbet);
+        const data = await response.json();
+        console.log(data);
 
-    let nomProd = document.getElementById('nomProduit');
-    nomProd.innerText = data[0].name;
+        const produit1 = data[0];
+        console.log(produit1);
+        
+        nameProduit.innerText = produit1.name;
+        descriptionProduit.innerText = produit1.description;
+        priceProduit.innerText = produit1.price + " €";
+        
+        
+        const optionColor = produit1.colors;
+        console.log(optionColor);
+        
+        optionColor.forEach(function(element , key){
+            colorSelect[key] = new Option(element, key);
+        })
+        
+        console.log(produit1.imageUrl)
+        imgProduit.src = produit1.imageUrl;
 
-}
-}
-prod();
 
+
+    }
+};
+
+focusTeddie();

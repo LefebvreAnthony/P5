@@ -103,18 +103,18 @@ const allTeddies = async function(){
         //console.log(data.length)
         
         for(i= 0; i < data.length ; i++){
-            const cardProduit = document.getElementById('produit-card');
             //console.log(cardProduit)
             
             
-            const imgProduit = document.getElementById('img-produit');
-            imgProduit.src = data[i].imageUrl;
+            
             
             const nameProduit = document.getElementById('nom-produit');
             nameProduit.innerText = data[i].name;
-
+            
+            const imgProduit = document.getElementById('img-produit');
+            imgProduit.src = data[i].imageUrl;
+            const cardProduit = document.getElementById('produit-card');
             const addCard = cardProduit.cloneNode(true);
-
             document.getElementById('main-produit').appendChild(addCard);
         }
     }
