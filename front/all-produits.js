@@ -121,22 +121,16 @@ const allTeddies = async function(){
             const addCard = cardProduit.cloneNode(true);
             mainProduit.appendChild(addCard);
             
-            const button = document.querySelectorAll('button');
-            console.log(buttonRedirect.id)
-
-            const idProduit = buttonRedirect.id;
-                button.forEach(button => {
-                    button.addEventListener('click', event => {
-                        window.location.href = `../pages/produit.html?id=${dataId}` ;
-                        console.log(event.target.id);
-                    })
-                })
-
-                /*buttonRedirect.id.addEventListener('click', function(){
-                    window.location.href = `../pages/produit.html?id=${dataId}` ;
-                })*/
+            /*buttonRedirect.id.addEventListener('click', function(){
+                window.location.href = `../pages/produit.html?id=${dataId}` ;
+            })*/
             
             
+            
+            const button = addCard.querySelector('.detail-button')
+            button.addEventListener('click', event => {
+                window.location.href = `./pages/produit.html?id=${event.target.id}` ;
+            })
             
             
         }
@@ -147,4 +141,3 @@ const allTeddies = async function(){
 allTeddies();
 mainProduit.removeChild(cardProduit);
 cardProduit.removeAttribute('id');
-
