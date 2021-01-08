@@ -95,6 +95,12 @@ for( i=0; i < detailsProduit.length-1; i++){
 */
 
 
+let buttonRedirect = document.getElementById('i');
+const cardProduit = document.getElementById('produit-card');
+const nameProduit = document.getElementById('nom-produit');
+const imgProduit = document.getElementById('img-produit');
+const mainProduit = document.getElementById('main-produit');
+
 const allTeddies = async function(){
     
     let response = await fetch("http://localhost:3000/api/teddies");
@@ -102,22 +108,43 @@ const allTeddies = async function(){
         const data = await response.json();
         //console.log(data.length)
         
+
         for(i= 0; i < data.length ; i++){
             //console.log(cardProduit)
             
-            
-            
-            
-            const nameProduit = document.getElementById('nom-produit');
-            nameProduit.innerText = data[i].name;
-            
-            const imgProduit = document.getElementById('img-produit');
+            let dataId = data[i]._id;
+
+            nameProduit.innerText = data[i].name;            
             imgProduit.src = data[i].imageUrl;
-            const cardProduit = document.getElementById('produit-card');
+            buttonRedirect.id = dataId;
+            
             const addCard = cardProduit.cloneNode(true);
-            document.getElementById('main-produit').appendChild(addCard);
+            mainProduit.appendChild(addCard);
+            
+            const button = document.querySelectorAll('button');
+            console.log(buttonRedirect.id)
+
+            const idProduit = buttonRedirect.id;
+                button.forEach(button => {
+                    button.addEventListener('click', event => {
+                        window.location.href = `../pages/produit.html?id=${dataId}` ;
+                        console.log(event.target.id);
+                    })
+                })
+
+                /*buttonRedirect.id.addEventListener('click', function(){
+                    window.location.href = `../pages/produit.html?id=${dataId}` ;
+                })*/
+            
+            
+            
+            
         }
+        
     }
 }
 
 allTeddies();
+mainProduit.removeChild(cardProduit);
+cardProduit.removeAttribute('id');
+

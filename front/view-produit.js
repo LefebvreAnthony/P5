@@ -2,36 +2,38 @@
 let imgProduit = document.getElementById('img-produit');
 let descriptionProduit = document.getElementById('description-produit');
 let colorSelect = document.getElementById('color-produit');
-let nameProduit = document.getElementById('name-produit');
+let nameProduit = document.getElementsByClassName('name-produit');
 let priceProduit = document.getElementById('price-produit');
 
 
 const focusTeddie = async function(){
 
-    let response = await fetch("http://localhost:3000/api/teddies");
-
+    const params = new URLSearchParams(location.search)
+    
+    let response = await fetch(`http://localhost:3000/api/teddies/${params.get('id')}`);
     if(response.ok){
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
-        const produit1 = data[0];
-        console.log(produit1);
+        const produit = data;
+        console.log(produit);
+        descriptionProduit.innerText = produit.description;
+        priceProduit.innerText = "prix : " + produit.price + " €";
         
-        nameProduit.innerText = produit1.name;
-        descriptionProduit.innerText = produit1.description;
-        priceProduit.innerText = produit1.price + " €";
+        Array.from(nameProduit).forEach(function(element){
+            element.innerText = produit.name
+        })
         
-        
-        const optionColor = produit1.colors;
-        console.log(optionColor);
+        const optionColor = produit.colors;
+        //console.log(optionColor);
         
         optionColor.forEach(function(element , key){
             colorSelect[key] = new Option(element, key);
         })
         
-        console.log(produit1.imageUrl)
-        imgProduit.src = produit1.imageUrl;
+        console.log(produit.imageUrl)
+        imgProduit.src = produit.imageUrl;
 
 
 
