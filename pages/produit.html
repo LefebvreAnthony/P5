@@ -11,14 +11,14 @@
 
     <title>Orinoco/Panier</title>
 </head>
-<body class="bg-dark font-weight-bold">
+<body class="bg-dark">
     <!--     HEADER     -->
     <header class="bg-white-purple">
         <div class="container">
             <div class="row">
                     <nav class="col navbar navbar-expand-md navbar-light">
                         <a class="navbar-brand calligraphy" href="../index.html">
-                            <img class="img-logo" src="../assets/img/logoOrinoco.png" alt="logo Orinoco">
+                            <img class="img-logo img-responsive" src="../assets/img/logoOrinoco.png" alt="logo Orinoco">
                             Orinoco
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
@@ -42,7 +42,7 @@
 
     <!--   JUMBOTRON   -->
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid mb-5">
         <div class="container">
             <h1 class="text-primary">Vous regardez la fiche produit de <span class="name-produit"></span></h1>
         </div>
@@ -50,22 +50,22 @@
 
     <!--    CARD PROD    -->
 
-    <main class="container bg-light">
+    <main class="container bg-light main-produit ">
         <section class="row">
-            <div class="col-12 col-md-6 card">
-                    <img id="img-produit" class="img" src="" alt="">
+            <div class="col-12 col-md-6 card p-0">
+                    <img id="img-produit" class="img-responsive" src="" alt="">
             </div>
             <div class="col-12 col-md-6 card-body">
                 <aside class="">
-                    <h3 class="name-produit" class="card-title mt-3 mb-5">
-                        
+                    <h3 class="name-produit" class="card-title mt-3">
                     </h3>
-                    <p>Selectionnez votre couleur :</p>
+                    <p class="mt-5 font-weight-bold">Selectionnez votre couleur :</p>
                     <select name="color-produit" id="color-produit" class="mb-5 form-control">
                     </select>
-                    <h4>Description du produit :</h4>
-                    <p id="description-produit" class="text-justify mb-5">
-                    </p>
+                    <dl class="dl-horizontal">
+                        <dt class="mb-3">Description du produit :</dt>
+                        <dd id="description-produit" class="mb-5"></dd>
+                    </dl>
                     <p id="price-produit" class="text-right font-weight-bold"></p>
                     <button  class="btn btn-success float-right font-weight-bold">
                         <svg class="logo-add-panier" role="img" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="white">

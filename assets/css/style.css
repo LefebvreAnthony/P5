@@ -29,6 +29,10 @@ img{
     height: 30px;
     display:none;
 }
+.display{
+    display: flex;
+    justify-content: space-between;
+}
 @media screen and (max-width: 576px){
     .logo-add-panier{
         display: flex;
@@ -36,7 +40,7 @@ img{
     .text-add-panier{
         display: none;
     }
-}
-.visi{
-    display: none;
+    
+    .main-produit{
+        margin-bottom: 10rem;
 }

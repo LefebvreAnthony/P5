@@ -120,17 +120,13 @@ const allTeddies = async function(){
             
             const addCard = cardProduit.cloneNode(true);
             mainProduit.appendChild(addCard);
-            
-            /*buttonRedirect.id.addEventListener('click', function(){
-                window.location.href = `../pages/produit.html?id=${dataId}` ;
-            })*/
-            
+
             
             
             const button = addCard.querySelector('.detail-button')
             button.addEventListener('click', event => {
                 window.location.href = `./pages/produit.html?id=${event.target.id}` ;
-            })
+            });
             
             
         }
