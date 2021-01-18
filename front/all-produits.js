@@ -95,43 +95,55 @@ for( i=0; i < detailsProduit.length-1; i++){
 */
 
 
-let buttonRedirect = document.getElementById('i');
+
+const buttonRedirect = document.getElementById('i');
 const cardProduit = document.getElementById('produit-card');
 const nameProduit = document.getElementById('nom-produit');
 const imgProduit = document.getElementById('img-produit');
 const mainProduit = document.getElementById('main-produit');
+const buttonAddPanier = document.querySelector('.add-panier');
+const url = "http://localhost:3000/api/teddies";
 
-const allTeddies = async function(){
-    
-    let response = await fetch("http://localhost:3000/api/teddies");
-    if(response.ok){
-        const data = await response.json();
-        //console.log(data.length)
-        
+function allTeddies (){
+    fetch(url)
+        .then(response => {
 
-        for(i= 0; i < data.length ; i++){
-            //console.log(cardProduit)
-            
-            let dataId = data[i]._id;
+            if (response.ok) {
+                return response.json().then(data => {
 
-            nameProduit.innerText = data[i].name;            
-            imgProduit.src = data[i].imageUrl;
-            buttonRedirect.id = dataId;
-            
-            const addCard = cardProduit.cloneNode(true);
-            mainProduit.appendChild(addCard);
 
-            
-            
-            const button = addCard.querySelector('.detail-button')
-            button.addEventListener('click', event => {
-                window.location.href = `./pages/produit.html?id=${event.target.id}` ;
-            });
-            
-            
-        }
-        
-    }
+                    //Boucle pour chaque objet dans l'api, créer un clone avec les informations de l'objet.
+                    for (i = 0; i < data.length; i++) {
+                        //console.log(cardProduit)
+                        let dataId = data[i]._id;
+
+                        nameProduit.innerText = data[i].name;
+                        imgProduit.src = data[i].imageUrl;
+                        buttonRedirect.id = dataId;
+                        buttonAddPanier.dataset.id = dataId;
+
+                        const addCard = cardProduit.cloneNode(true);
+                        mainProduit.appendChild(addCard);
+
+
+                        //Afficher la page detail produit avec le bon produit
+                        const button = addCard.querySelector('.detail-button');
+                        button.addEventListener('click', event => {
+                            window.location.href = `./pages/produit.html?id=${event.target.id}`;
+                        });
+
+
+                    }
+                    buttonAddPanier.addEventListener('click', event => {
+
+                        sessionStorage.setItem('data', JSON.stringify(data));
+                        console.log(JSON.parse(sessionStorage.getItem('data')));
+                        //window.location.href = './pages/panier.html';
+                    });
+                });
+
+            }
+        });
 }
 
 allTeddies();

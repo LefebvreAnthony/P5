@@ -4,6 +4,7 @@ let descriptionProduit = document.getElementById('description-produit');
 let colorSelect = document.getElementById('color-produit');
 let nameProduit = document.getElementsByClassName('name-produit');
 let priceProduit = document.getElementById('price-produit');
+const buttonAddPanier = document.querySelector('.add-panier');
 
 
 const focusTeddie = async function(){
@@ -17,7 +18,7 @@ const focusTeddie = async function(){
         //console.log(data);
 
         const produit = data;
-        console.log(produit);
+        //console.log(produit);
         descriptionProduit.innerText = produit.description;
         priceProduit.innerText = "prix : " + produit.price + " €";
         
@@ -32,12 +33,19 @@ const focusTeddie = async function(){
             colorSelect[key] = new Option(element, key);
         })
         
-        console.log(produit.imageUrl)
+        //console.log(produit.imageUrl)
         imgProduit.src = produit.imageUrl;
+        buttonAddPanier.id = produit._id;
+        buttonAddPanier.addEventListener('click', event => {
 
-
-
+            sessionStorage.setItem('data', JSON.stringify(produit));
+            console.log(JSON.parse(sessionStorage.getItem('data')));
+            //window.location.href = './pages/panier.html';
+        });
     }
 };
 
 focusTeddie();
+localStorage.clear
+
+console.log(localStorage.length)
