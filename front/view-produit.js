@@ -49,3 +49,28 @@ focusTeddie();
 localStorage.clear
 
 console.log(localStorage.length)
+
+
+
+
+
+
+
+
+
+/* let products = [];
+                            if(localStorage.getItem('products')){
+                                products = JSON.parse(localStorage.getItem('products'));
+                            }else{
+                                for(i = 0; i > products.length; i++){
+                                    if(dataId === products[i].id){
+                                        products[i].quantity += 1; 
+                                    }
+                                    
+                                }
+                            }
+                            products.push({'name': dataName, 'productId' : dataId, 'quantity' : '1', 'price': dataPrice,});
+                            localStorage.setItem('products', JSON.stringify(products));
+                        });
+
+                        */
