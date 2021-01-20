@@ -19,21 +19,24 @@ const priceCart = document.getElementById('price-cart');
 function viewCart() {
 
     for(i = 0; i < cartLenght; i++){
-        let cartPrice = `${`${objCartParse[i].price * objCartParse[i].quantity}`} €`;
         let cartName = objCartParse[i].name;
         nameProduit.innerHTML = cartName;
-
+        
         let imgCart = objCartParse[i].img;
         imgProduit.src = imgCart;
 
+        let cartQuantity = document.getElementById('cart-quantity');
+        cartQuantity.innerHTML = `Quantité d'article : ${objCartParse[i].quantity.toString()}`;
+        
+        let cartPrice = `${`${objCartParse[i].price * objCartParse[i].quantity}`} €`;
         priceCart.innerHTML = cartPrice;
 
         const addCard = produitCart.cloneNode(true);
         mainCart.appendChild(addCard);
-        produitCart.removeAttribute('id');
-          console.log();
+        console.log();
     }
 }
 
 viewCart();
 mainCart.removeChild(produitCart);
+produitCart.removeAttribute('id');
