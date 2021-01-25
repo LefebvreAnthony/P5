@@ -4,7 +4,7 @@ let descriptionProduit = document.getElementById('description-produit');
 let colorSelect = document.getElementById('color-produit');
 let nameProduit = document.getElementsByClassName('name-produit');
 let priceProduit = document.getElementById('price-produit');
-const buttonAddPanier = document.querySelector('.add-panier');
+const buttonAddPanier = document.getElementById('add-panier');
 
 
 const focusTeddie = async function(){
@@ -35,42 +35,37 @@ const focusTeddie = async function(){
         
         //console.log(produit.imageUrl)
         imgProduit.src = produit.imageUrl;
-        buttonAddPanier.id = produit._id;
         buttonAddPanier.addEventListener('click', event => {
-
-            sessionStorage.setItem('data', JSON.stringify(produit));
-            console.log(JSON.parse(sessionStorage.getItem('data')));
-            //window.location.href = './pages/panier.html';
+                            
+                let cart = localStorage.getItem('cart');
+                
+                if(cart == null){
+                    cart = [
+                        {
+                            'name': produit.name,
+                            'id': produit.id,
+                            'quantity': 1,
+                            'price': produit.price,
+                            'img': produit.imageUrl,
+                        }
+                    ]
+                } else{
+                    cart = JSON.parse(cart)
+                    let finded = 0;
+                    for(i = 0; i < cart.length; i++){
+                        if(produit.name === cart[i].name){
+                            cart[i].quantity += 1;
+                            finded = 1;
+                            break
+                        }
+                    }
+                    if(!finded){
+                        cart.push({'name': dataName, 'id': dataId, 'quantity': 1, 'price': dataPrice, 'img': dataImg,})
+                    }
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
         });
     }
 };
 
 focusTeddie();
-localStorage.clear
-
-console.log(localStorage.length)
-
-
-
-
-
-
-
-
-
-/* let products = [];
-                            if(localStorage.getItem('products')){
-                                products = JSON.parse(localStorage.getItem('products'));
-                            }else{
-                                for(i = 0; i > products.length; i++){
-                                    if(dataId === products[i].id){
-                                        products[i].quantity += 1; 
-                                    }
-                                    
-                                }
-                            }
-                            products.push({'name': dataName, 'productId' : dataId, 'quantity' : '1', 'price': dataPrice,});
-                            localStorage.setItem('products', JSON.stringify(products));
-                        });
-
-                        */

@@ -58,23 +58,25 @@
 
     <!--    Product Cart -->
     <div class="container main-produit">
-        <div class="row justify-content-end">
-            
-            <button id="i" class="btn btn-danger font-weight-bold mr-3 mb-5" type="button">
+        <div id='parent-button' class="row justify-content-end">
+            <button id="clear-cart" class="btn btn-danger font-weight-bold mr-3 mb-5" type="button">
                 Vider le panier
             </button>
         </div>
             <div id='main-cart' class="row">
-                <div id="produit-cart" class="col-12 row pb-3">
+                <div id="produit-cart" class="col-12 row p-0 bg-light mb-3 border border-secondary">
                     <div class="col-12 col-md-6 card p-0">
                         <img id="img-produit" src="" alt="">
                     </div>
-                    <div class="col-12 col-md-6 card-body">
+                    <div class="col-12 col-md-6 card-body text-right">
                             <h3 id="name-produit" class="card-title mt-3"></h3>
                             <p id="cart-quantity"></p>
                             <p id="price-cart"></p>
                     </div>
                 </div>
+            </div>
+            <div>
+                <p id="total-price" class="text-right font-weight-boldw"></p>
             </div>
     </div>
     <!--    FORM    -->
