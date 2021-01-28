@@ -28,13 +28,13 @@ let postForm = {
     products: [],
 
 }
-
+//création visuel des articles que l'on à ajouté au panier
 function viewCart() {
     if (localStorage.length >= 1) {
 
         const cartLenght = objCartParse.length;
         let totalPrice = 0;
-        for (i = 0; i < cartLenght; i++) {
+        for (let i = 0; i < cartLenght; i++) {
             let cartName = objCartParse[i].name;
             nameProduit.innerHTML = cartName;
 
@@ -52,6 +52,8 @@ function viewCart() {
             const addCard = produitCart.cloneNode(true);
             mainCart.appendChild(addCard);
 
+
+            //Créer les valeurs pour le post order de chaque id article
             for(let j= 0; j < objCartParse[i].quantity; j++){
 
                 postForm.products.push(objCartParse[i].id);
@@ -92,22 +94,28 @@ const inputMail = document.getElementById('inputMail');
 const inputValidation = document.getElementById('inputValidation');
 
 inputValidation.addEventListener('click', function(){
-    postForm = {
-        contact: {
-            firstName: inputFirstName.value,
-            lastName: inputLastName.value,
-            address: inputAdress.value,
-            city: inputCity.value,
-            email: inputMail.value,
-    
-        },
-    }
     fetch('http://localhost:3000/api/teddies/order', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(postForm),
+    })
+    .then(response =>{
+        if(response.ok){
+            
+            postForm = {
+                contact: {
+                    firstName: inputFirstName.value,
+                    lastName: inputLastName.value,
+                    address: inputAdress.value,
+                    city: inputCity.value,
+                    email: inputMail.value,
+            
+                },
+            }
+        };
+        location.href = 'order.html'
     })
 });
 
