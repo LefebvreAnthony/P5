@@ -16,6 +16,19 @@ const imgProduit = document.getElementById('img-produit');
 const nameProduit = document.getElementById('name-produit');
 const priceCart = document.getElementById('price-cart');
 
+let postForm = {
+    contact: {
+        firstName: '',
+        lastName: '',
+        address: '',
+        city: '',
+        email: '',
+
+    },
+    products: [],
+
+}
+
 function viewCart() {
     if (localStorage.length >= 1) {
 
@@ -38,6 +51,11 @@ function viewCart() {
 
             const addCard = produitCart.cloneNode(true);
             mainCart.appendChild(addCard);
+
+            for(let j= 0; j < objCartParse[i].quantity; j++){
+
+                postForm.products.push(objCartParse[i].id);
+            }
         }
         totalPriceCart.innerHTML = `Prix total  : ${totalPrice} €`;
     } else {
@@ -73,29 +91,23 @@ const inputAdress = document.getElementById('inputAdress');
 const inputMail = document.getElementById('inputMail');
 const inputValidation = document.getElementById('inputValidation');
 
-
-let postForm = {
-    contact: {
-        firstName: inputFirstName.value,
-        lastName: inputLastName.value,
-        address: inputAdress.value,
-        city: inputCity.value,
-        email: inputMail.value,
-
-        products: [],
-    },
-
-}
-
-const formPost = async function (data) {
-    let res = await fetch('http://localhost:3000/api/teddies/order', {
+inputValidation.addEventListener('click', function(){
+    postForm = {
+        contact: {
+            firstName: inputFirstName.value,
+            lastName: inputLastName.value,
+            address: inputAdress.value,
+            city: inputCity.value,
+            email: inputMail.value,
+    
+        },
+    }
+    fetch('http://localhost:3000/api/teddies/order', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(postForm),
     })
-    
-};
-formPost()
+});
 
