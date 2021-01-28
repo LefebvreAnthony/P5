@@ -60,7 +60,7 @@ const focusTeddie = async function(){
                         }
                     }
                     if(!finded){
-                        cart.push({'name': dataName, 'id': dataId, 'quantity': 1, 'price': dataPrice, 'img': dataImg,})
+                        cart.push({'name': produit.name, 'id': produit.id, 'quantity': 1, 'price': produit.price, 'img': produit.imageUrl,})
                     }
                 }
                 localStorage.setItem('cart', JSON.stringify(cart));

@@ -65,10 +65,10 @@
         </div>
             <div id='main-cart' class="row">
                 <div id="produit-cart" class="col-12 row p-0 bg-light mb-3 border border-secondary">
-                    <div class="col-12 col-md-6 card p-0">
+                    <div class="col-12 col-md-3 card p-0">
                         <img id="img-produit" src="" alt="">
                     </div>
-                    <div class="col-12 col-md-6 card-body text-right">
+                    <div class="col-12 col-md-9 card-body text-right">
                             <h3 id="name-produit" class="card-title mt-3"></h3>
                             <p id="cart-quantity"></p>
                             <p id="price-cart"></p>
@@ -81,30 +81,43 @@
     </div>
     <!--    FORM    -->
 
-    <form class="container" action="">
+    <form method="POST" class="container" action="">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="Nom">Nom</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="Nom" placeholder="Nom de famille">
+                <input type="text" id="inputLastName" class="form-control" name="Nom" placeholder="Nom de famille" required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="Prenom">Prénom</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="Prénom" placeholder="Prénom">
+                <input type="text" id="inputFirstName" class="form-control" name="Prénom" placeholder="Prénom" required>
+            </div>
+        </div>
+    </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="city">Ville</label>
+            <div class="col-sm-10">
+                <input type="text" id="inputCity" class="form-control" name="city" placeholder="Paris" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="adresse">Adresse</label>
+            <div class="col-sm-10">
+                <input type="text" id="inputAdress" class="form-control" name="adresse" placeholder="rue ****" required>
             </div>
         </div>
         <div class="form-group row mb-5">
             <label class="col-sm-2 col-form-label" for="email">Adresse email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" placeholder="myemail@myemail.net">
+                <input type="email" id="inputMail" class="form-control" name="email" placeholder="myemail@myemail.net" required>
             </div>
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input">
+            <input type="checkbox" id="inputCheck" class="form-check-input">
             <label for="vérification">Vérifiez vos données saisies</label>
         </div>
-        <button type="submit" class="btn btn-primary float-right">Achetez vos produits</button>
+        <button type="submit" id="inputValidation" class="btn btn-primary float-right">Achetez vos produits</button>
     </form>
 
         <!--     FOOTER     -->
