@@ -92,6 +92,15 @@ const inputMail = document.getElementById('inputMail');
 const inputValidation = document.getElementById('inputValidation');
 
 inputValidation.addEventListener('click', function(){
+    
+    postForm.contact = {
+            firstName: inputFirstName.value,
+            lastName: inputLastName.value,
+            address: inputAdress.value,
+            city: inputCity.value,
+            email: inputMail.value,
+    
+        }
     fetch('http://localhost:3000/api/teddies/order', {
         method: "POST",
         headers: {
@@ -101,17 +110,6 @@ inputValidation.addEventListener('click', function(){
     })
     .then(response =>{
         if(response.ok){
-            
-            postForm = {
-                contact: {
-                    firstName: inputFirstName.value,
-                    lastName: inputLastName.value,
-                    address: inputAdress.value,
-                    city: inputCity.value,
-                    email: inputMail.value,
-            
-                },
-            }
         };
         location.href = 'order.html'
     })
