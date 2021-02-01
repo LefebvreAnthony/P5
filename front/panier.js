@@ -84,8 +84,6 @@ function clearCart() {
     })
 }
 clearCart();
-
-
 const inputLastName = document.getElementById('inputLastName');
 const inputFirstName = document.getElementById('inputFirstName');
 const inputCity = document.getElementById('inputCity');
@@ -119,3 +117,4 @@ inputValidation.addEventListener('click', function(){
     })
 });
 
+console.log(postForm)
