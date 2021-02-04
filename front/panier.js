@@ -61,6 +61,7 @@ function viewCart() {
         }
         totalPriceCart.innerHTML = `Prix total  : ${totalPrice} €`;
     } else {
+        body.removeChild(mainCart)
         //suprimer bouton vider panier
         document.getElementById('parent-button').removeChild(buttonClear);
     }
@@ -91,8 +92,9 @@ const inputAdress = document.getElementById('inputAdress');
 const inputMail = document.getElementById('inputMail');
 const inputValidation = document.getElementById('inputValidation');
 
-inputValidation.addEventListener('click', function(){
-    
+inputValidation.addEventListener('click', function(evt){
+    evt.preventDefault();
+    evt.stopPropagation();
     postForm.contact = {
             firstName: inputFirstName.value,
             lastName: inputLastName.value,
@@ -110,9 +112,140 @@ inputValidation.addEventListener('click', function(){
     })
     .then(response =>{
         if(response.ok){
+            return response.json().then(data => {
+                localStorage.clear();
+                localStorage.setItem("orderId", data.orderId)
+                location.href = 'order.html'
+
+            })
         };
-        location.href = 'order.html'
     })
 });
 
 console.log(postForm)
+const validateEmail = function (mail) {
+ 
+    const emailRegExp = new RegExp(
+        
+        '^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$',
+        'g'
+    );
+    let testEmail = emailRegExp.test(mail.value);
+    let small = inputMail.nextElementSibling;
+    if(testEmail) {
+        small.innerHTML = 'Adresse email valide';
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+
+    } else {
+        small.innerHTML = "Adresse email non valide ! "
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+    }
+};
+
+inputMail.addEventListener('change', function(){
+
+    validateEmail(this);
+});
+
+
+
+
+
+const validateLastName = function(lastName){
+
+    const lastNameRegExp = new RegExp(
+        '^[A-Za-z]{1,20}$',
+        'g'
+    );
+    let testLastName = lastNameRegExp.test(lastName.value)
+    let small = inputLastName.nextElementSibling;
+    if(testLastName) {
+        small.innerHTML = 'Nom valide';
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+
+    } else {
+        small.innerHTML = "Nom invalide ! "
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+    }
+};
+
+
+inputLastName.addEventListener('change', function(){
+    validateLastName(this);
+});
+
+const validateFirstName = function(firstName){
+
+    const firstNameRegExp = new RegExp(
+        '^[A-Za-z]{1,20}$',
+        'g'
+    );
+    let testFirstName = firstNameRegExp.test(firstName.value)
+    let small = inputFirstName.nextElementSibling;
+    if(testFirstName) {
+        small.innerHTML = 'Prénom valide';
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+
+    } else {
+        small.innerHTML = "Prénom invalide ! "
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+    }
+};
+
+inputLastName.addEventListener('change', function(){
+    validateFirstName(this);
+});
+
+
+
+const validateCity = function(city) {
+
+    const cityRegExp = new RegExp(
+        '^[a-zA-Z-\\s]{1,50}$',
+        'g'
+    )
+    let testCity = cityRegExp.test(city.value)
+    let small = inputCity.nextElementSibling;
+    if(testCity) {
+        small.innerHTML = 'Ville valide';
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+
+    } else {
+        small.innerHTML = "Ville invalide ! "
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+    }
+};
+inputCity.addEventListener('change', function(){
+    validateCity(this);
+});
+
+const validateAdress = function(adresse) {
+
+    const adresseRegExp = new RegExp(
+        '^[a-zA-Z0-9-_\\s]{1,50}$',
+        'g'
+    )
+    let testAdress = adresseRegExp.test(adresse.value)
+    let small = inputAdress.nextElementSibling;
+    if(testAdress) {
+        small.innerHTML = 'Adresse valide';
+        small.classList.remove('text-danger');
+        small.classList.add('text-success');
+
+    } else {
+        small.innerHTML = "Adresse invalide ! "
+        small.classList.remove('text-success');
+        small.classList.add('text-danger');
+    }
+};
+inputAdress.addEventListener('change', function(){
+    validateAdress(this);
+})

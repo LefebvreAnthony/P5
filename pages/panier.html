@@ -76,22 +76,24 @@
                 </div>
             </div>
             <div>
-                <p id="total-price" class="text-right font-weight-boldw"></p>
+                <p id="total-price" class="text-right font-weight-bold"></p>
             </div>
     </div>
     <!--    FORM    -->
 
-    <form class="container">
+    <form class="container" >
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="Nom">Nom</label>
             <div class="col-sm-10">
                 <input type="text" id="inputLastName" class="form-control" name="Nom" placeholder="Nom de famille" required>
+                <small></small>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="Prenom">Prénom</label>
             <div class="col-sm-10">
                 <input type="text" id="inputFirstName" class="form-control" name="Prénom" placeholder="Prénom" required>
+                <small></small>
             </div>
         </div>
     </div>
@@ -99,25 +101,26 @@
             <label class="col-sm-2 col-form-label" for="city">Ville</label>
             <div class="col-sm-10">
                 <input type="text" id="inputCity" class="form-control" name="city" placeholder="Paris" required>
+                <small></small>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="adresse">Adresse</label>
             <div class="col-sm-10">
                 <input type="text" id="inputAdress" class="form-control" name="adresse" placeholder="rue ****" required>
+                <small></small>
             </div>
         </div>
         <div class="form-group row mb-5">
-            <label class="col-sm-2 col-form-label" for="email">Adresse email</label>
+            <label class="col-sm-2 col-form-label" for="email">Email</label>
             <div class="col-sm-10">
                 <input type="email" id="inputMail" class="form-control" name="email" placeholder="myemail@myemail.net" required>
+                <small></small>
             </div>
         </div>
-        <div class="form-check">
-            <input type="checkbox" id="inputCheck" class="form-check-input">
-            <label for="vérification">Vérifiez vos données saisies</label>
+        <div>
+            <button type="submit" id="inputValidation" class="btn btn-primary">Achetez vos produits</button>
         </div>
-        <button id="inputValidation" class="btn btn-primary float-right">Achetez vos produits</button>
     </form>
 
         <!--     FOOTER     -->
