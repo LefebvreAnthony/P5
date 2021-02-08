@@ -221,7 +221,7 @@ const validateFirstName = function (firstName) {
     }
 };
 
-inputLastName.addEventListener('change', function () {
+inputFirstName.addEventListener('change', function () {
     validateFirstName(this);
 });
 

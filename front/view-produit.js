@@ -33,7 +33,7 @@ const focusTeddie = async function(){
             colorSelect[key] = new Option(element, key);
         })
         
-        //console.log(produit.imageUrl)
+        console.log(produit._id)
         imgProduit.src = produit.imageUrl;
         buttonAddPanier.addEventListener('click', event => {
                             
@@ -43,7 +43,7 @@ const focusTeddie = async function(){
                     cart = [
                         {
                             'name': produit.name,
-                            'id': produit.id,
+                            'id': produit._id,
                             'quantity': 1,
                             'price': produit.price,
                             'img': produit.imageUrl,
@@ -52,7 +52,7 @@ const focusTeddie = async function(){
                 } else{
                     cart = JSON.parse(cart)
                     let finded = 0;
-                    for(i = 0; i < cart.length; i++){
+                    for(let i = 0; i < cart.length; i++){
                         if(produit.name === cart[i].name){
                             cart[i].quantity += 1;
                             finded = 1;
@@ -60,7 +60,7 @@ const focusTeddie = async function(){
                         }
                     }
                     if(!finded){
-                        cart.push({'name': produit.name, 'id': produit.id, 'quantity': 1, 'price': produit.price, 'img': produit.imageUrl,})
+                        cart.push({'name': produit.name, 'id': produit._id, 'quantity': 1, 'price': produit.price, 'img': produit.imageUrl,})
                     }
                 }
                 localStorage.setItem('cart', JSON.stringify(cart));
