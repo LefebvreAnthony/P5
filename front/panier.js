@@ -15,6 +15,11 @@ const totalPriceCart = document.getElementById('total-price');
 const imgProduit = document.getElementById('img-produit');
 const nameProduit = document.getElementById('name-produit');
 const priceCart = document.getElementById('price-cart');
+const buttonAllProducts = document.getElementById('all-products');
+
+buttonAllProducts.addEventListener('click', function(){
+    window.location.href = '../index.html';
+});
 
 let postForm = {
     contact: {
@@ -29,49 +34,48 @@ let postForm = {
 
 }
 
-const buttonAllProducts = document.getElementById('all-products');
-
-buttonAllProducts.addEventListener('click', function(){
-    window.location.href = '../index.html';
-})
-
-
 //création visuel des articles que l'on à ajouté au panier
 function viewCart() {
-    if (localStorage.length >= 1) {
+    try{
+        if (localStorage.length >= 1) {
 
-        const cartLenght = objCartParse.length;
-        let totalPrice = 0;
-        for (let i = 0; i < cartLenght; i++) {
-            let cartName = objCartParse[i].name;
-            nameProduit.innerHTML = cartName;
-
-            let imgCart = objCartParse[i].img;
-            imgProduit.src = imgCart;
-
-            let cartQuantity = document.getElementById('cart-quantity');
-            cartQuantity.innerHTML = `Quantité d'article : ${objCartParse[i].quantity.toString()}`;
-            //Calcul prix des articles
-            let cartPrice = objCartParse[i].price * objCartParse[i].quantity;
-            priceCart.innerHTML = cartPrice + " €";
-            totalPrice += cartPrice;
-            //Calcul total prix du panier
-
-            const addCard = produitCart.cloneNode(true);
-            mainCart.appendChild(addCard);
-
-
-            //Créer les valeurs pour le post order de chaque id article
-            for(let j= 0; j < objCartParse[i].quantity; j++){
-
-                postForm.products.push(objCartParse[i].id);
+            const cartLenght = objCartParse.length;
+            let totalPrice = 0;
+            for (let i = 0; i < cartLenght; i++) {
+                let cartName = objCartParse[i].name;
+                nameProduit.innerHTML = cartName;
+    
+                let imgCart = objCartParse[i].img;
+                imgProduit.src = imgCart;
+    
+                let cartQuantity = document.getElementById('cart-quantity');
+                cartQuantity.innerHTML = `Quantité d'article : ${objCartParse[i].quantity.toString()}`;
+                //Calcul prix des articles
+                let cartPrice = objCartParse[i].price * objCartParse[i].quantity;
+                priceCart.innerHTML = cartPrice + " €";
+                totalPrice += cartPrice;
+                //Calcul total prix du panier
+    
+                const addCard = produitCart.cloneNode(true);
+                mainCart.appendChild(addCard);
+    
+    
+                //Créer les valeurs pour le post order de chaque id article
+                for(let j= 0; j < objCartParse[i].quantity; j++){
+    
+                    postForm.products.push(objCartParse[i].id);
+                }
             }
+            totalPriceCart.innerHTML = `Prix total  : ${totalPrice} €`;
         }
-        totalPriceCart.innerHTML = `Prix total  : ${totalPrice} €`;
-    } else {
-        body.removeChild(mainCart)
-        //suprimer bouton vider panier
-        document.getElementById('parent-button').removeChild(buttonClear);
+        else {
+            const mainProduit = document.getElementById('main-produit');
+           mainProduit.removeChild(mainCart)
+           //suprimer bouton vider panier
+           document.getElementById('parent-button').removeChild(buttonClear);
+       }
+    } catch(e){
+        console.log('Erreur : '+ e)
     }
 }
 
