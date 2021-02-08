@@ -28,6 +28,14 @@ let postForm = {
     products: [],
 
 }
+
+const buttonAllProducts = document.getElementById('all-products');
+
+buttonAllProducts.addEventListener('click', function(){
+    window.location.href = '../index.html';
+})
+
+
 //création visuel des articles que l'on à ajouté au panier
 function viewCart() {
     if (localStorage.length >= 1) {
