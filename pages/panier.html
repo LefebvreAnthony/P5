@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +9,36 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Orinoco/Panier</title>
 </head>
+
 <body>
     <!--     HEADER     -->
     <header class="bg-white-purple">
         <div class="container">
             <div class="row">
-                    <nav class="col navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand calligraphy" href="../index.html">
-                            <img class="img-logo" src="../assets/img/logoOrinoco.png" alt="logo Orinoco">
-                            Orinoco
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navContent">
-                            <ul class="navbar-nav ml-auto float-right">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="../index.html">Acceuil</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="./panier.html">Panier</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
+                <nav class="col navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand calligraphy" href="../index.html">
+                        <img class="img-logo" src="../assets/img/logoOrinoco.png" alt="logo Orinoco">
+                        Orinoco
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navContent">
+                        <ul class="navbar-nav ml-auto float-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">Acceuil</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="./panier.html">Panier</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
         </div>
 
@@ -48,8 +51,8 @@
             <p class="lead">Vérifiez votre panier avant de poursuivre votre transaction</p>
             <hr class="my-4">
             <p class="lead">Vous avez oublié un article?</br>Regardez de nouveau nos produits !</p>
-            
-                <button  id="all-products" class="btn btn-primary" type="button">Nos produits</button>
+
+            <button id="all-products" class="btn btn-primary" type="button">Nos produits</button>
         </div>
     </div>
 
@@ -63,58 +66,60 @@
                 Vider le panier
             </button>
         </div>
-            <div id='main-cart' class="">
-                <div id="produit-cart" class="col-12 p-0 bg-light mb-3 border border-secondary">
-                    <div class="col-12 col-md-3 card p-0">
-                        <img id="img-produit" src="#" alt="teddies">
-                    </div>
-                    <div class="col-12 col-md-9 card-body text-right">
-                            <h3 id="name-produit" class="card-title mt-3"></h3>
-                            <p id="cart-quantity"></p>
-                            <p id="price-cart"></p>
-                    </div>
+        <div id='main-cart' class="">
+            <div id="produit-cart" class="col-12 p-0 bg-light mb-3 border border-secondary">
+                <div class="col-12 col-md-3 card p-0">
+                    <img id="img-produit" src="#" alt="teddies">
+                </div>
+                <div class="col-12 col-md-9 card-body text-right">
+                    <h3 id="name-produit" class="card-title mt-3"></h3>
+                    <p id="cart-quantity"></p>
+                    <p id="price-cart"></p>
                 </div>
             </div>
-            <div>
-                <p id="total-price" class="text-right font-weight-bold"></p>
-            </div>
+        </div>
+        <div>
+            <p id="total-price" class="text-right font-weight-bold"></p>
+        </div>
     </div>
     <!--    FORM    -->
 
-    <form class="container" >
+    <form class="container">
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="Nom">Nom de Famille</label>
+            <label class="col-sm-2 col-form-label" for="inputLastName">Nom de Famille</label>
             <div class="col-sm-10">
-                <input type="text" id="inputLastName" class="form-control" name="Nom" placeholder="Nom de famille" required>
+                <input type="text" id="inputLastName" class="form-control" name="Nom" placeholder="Nom de famille"
+                    required>
                 <small></small>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="Prenom">Prénom</label>
+            <label class="col-sm-2 col-form-label" for="inputFirstName">Prénom</label>
             <div class="col-sm-10">
                 <input type="text" id="inputFirstName" class="form-control" name="Prenom" placeholder="Prénom" required>
                 <small></small>
             </div>
         </div>
-    </div>
+        </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="city">Ville</label>
+            <label class="col-sm-2 col-form-label" for="inputCity">Ville</label>
             <div class="col-sm-10">
                 <input type="text" id="inputCity" class="form-control" name="city" placeholder="Paris" required>
                 <small></small>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="adresse">Adresse</label>
+            <label class="col-sm-2 col-form-label" for="inputAdress">Adresse</label>
             <div class="col-sm-10">
                 <input type="text" id="inputAdress" class="form-control" name="adresse" placeholder="rue ****" required>
                 <small></small>
             </div>
         </div>
         <div class="form-group row mb-5">
-            <label class="col-sm-2 col-form-label" for="email">Email</label>
+            <label class="col-sm-2 col-form-label" for="inputMail">Email</label>
             <div class="col-sm-10">
-                <input type="email" id="inputMail" class="form-control" name="email" placeholder="myemail@myemail.net" required>
+                <input type="email" id="inputMail" class="form-control" name="email" placeholder="myemail@myemail.net"
+                    required>
                 <small></small>
             </div>
         </div>
@@ -123,7 +128,7 @@
         </div>
     </form>
 
-        <!--     FOOTER     -->
+    <!--     FOOTER     -->
     <footer class="container-fluid bg-white-purple mt-5 pt-4">
         <div class="container">
             <div class="row">
@@ -149,25 +154,22 @@
             </div>
         </div>
     </footer>
-    
-        <!--     MY SCRIPT FRONT    -->
-        <script src="../front/panier.js"></script>   
 
-    
-    
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" 
-        crossorigin="anonymous">
+    <!--     MY SCRIPT FRONT    -->
+    <script src="../front/panier.js"></script>
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
-        crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
         </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
-        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
         </script>
-    </body>
 </body>
+
 </html>
