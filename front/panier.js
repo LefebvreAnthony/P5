@@ -92,6 +92,8 @@ const inputAdress = document.getElementById('inputAdress');
 const inputMail = document.getElementById('inputMail');
 const inputValidation = document.getElementById('inputValidation');
 
+
+//Function Reccup value formulaire 
 inputValidation.addEventListener('click', function(evt){
     evt.preventDefault();
     evt.stopPropagation();
@@ -123,6 +125,8 @@ inputValidation.addEventListener('click', function(evt){
 });
 
 console.log(postForm)
+
+// Validation caractère Email
 const validateEmail = function (mail) {
  
     const emailRegExp = new RegExp(
@@ -152,7 +156,7 @@ inputMail.addEventListener('change', function(){
 
 
 
-
+//Validation caratère Nom de famille !!
 const validateLastName = function(lastName){
 
     const lastNameRegExp = new RegExp(
@@ -177,7 +181,7 @@ const validateLastName = function(lastName){
 inputLastName.addEventListener('change', function(){
     validateLastName(this);
 });
-
+//Validation caratère Prénom !!
 const validateFirstName = function(firstName){
 
     const firstNameRegExp = new RegExp(
@@ -203,7 +207,7 @@ inputLastName.addEventListener('change', function(){
 });
 
 
-
+//Validation caratère Ville !!
 const validateCity = function(city) {
 
     const cityRegExp = new RegExp(
@@ -227,6 +231,8 @@ inputCity.addEventListener('change', function(){
     validateCity(this);
 });
 
+
+//Validation caratère Adresse !!
 const validateAdress = function(adresse) {
 
     const adresseRegExp = new RegExp(

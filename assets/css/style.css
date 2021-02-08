@@ -29,6 +29,10 @@ img{
     height: 30px;
     display:none;
 }
+#produit-cart{
+    display: flex;
+    flex-wrap: wrap;
+}
 .display{
     display: flex;
     justify-content: space-between;
@@ -43,4 +47,13 @@ img{
     
     .main-produit{
         margin-bottom: 10rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    #main-cart{
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
