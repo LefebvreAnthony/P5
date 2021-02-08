@@ -17,7 +17,7 @@ const nameProduit = document.getElementById('name-produit');
 const priceCart = document.getElementById('price-cart');
 const buttonAllProducts = document.getElementById('all-products');
 
-buttonAllProducts.addEventListener('click', function(){
+buttonAllProducts.addEventListener('click', function () {
     window.location.href = '../index.html';
 });
 
@@ -36,7 +36,7 @@ let postForm = {
 
 //création visuel des articles que l'on à ajouté au panier
 function viewCart() {
-    try{
+    try {
         if (localStorage.length >= 1) {
 
             const cartLenght = objCartParse.length;
@@ -44,10 +44,10 @@ function viewCart() {
             for (let i = 0; i < cartLenght; i++) {
                 let cartName = objCartParse[i].name;
                 nameProduit.innerHTML = cartName;
-    
+
                 let imgCart = objCartParse[i].img;
                 imgProduit.src = imgCart;
-    
+
                 let cartQuantity = document.getElementById('cart-quantity');
                 cartQuantity.innerHTML = `Quantité d'article : ${objCartParse[i].quantity.toString()}`;
                 //Calcul prix des articles
@@ -55,14 +55,14 @@ function viewCart() {
                 priceCart.innerHTML = cartPrice + " €";
                 totalPrice += cartPrice;
                 //Calcul total prix du panier
-    
+
                 const addCard = produitCart.cloneNode(true);
                 mainCart.appendChild(addCard);
-    
-    
+
+
                 //Créer les valeurs pour le post order de chaque id article
-                for(let j= 0; j < objCartParse[i].quantity; j++){
-    
+                for (let j = 0; j < objCartParse[i].quantity; j++) {
+
                     postForm.products.push(objCartParse[i].id);
                 }
             }
@@ -70,12 +70,12 @@ function viewCart() {
         }
         else {
             const mainProduit = document.getElementById('main-produit');
-           mainProduit.removeChild(mainCart)
-           //suprimer bouton vider panier
-           document.getElementById('parent-button').removeChild(buttonClear);
-       }
-    } catch(e){
-        console.log('Erreur : '+ e)
+            mainProduit.removeChild(mainCart)
+            //suprimer bouton vider panier
+            document.getElementById('parent-button').removeChild(buttonClear);
+        }
+    } catch (e) {
+        console.log('Erreur : ' + e)
     }
 }
 
@@ -109,17 +109,17 @@ const inputValidation = document.getElementById('inputValidation');
 
 
 //Function Reccup value formulaire 
-inputValidation.addEventListener('click', function(evt){
+inputValidation.addEventListener('click', function (evt) {
     evt.preventDefault();
     evt.stopPropagation();
     postForm.contact = {
-            firstName: inputFirstName.value,
-            lastName: inputLastName.value,
-            address: inputAdress.value,
-            city: inputCity.value,
-            email: inputMail.value,
-    
-        }
+        firstName: inputFirstName.value,
+        lastName: inputLastName.value,
+        address: inputAdress.value,
+        city: inputCity.value,
+        email: inputMail.value,
+
+    }
     fetch('http://localhost:3000/api/teddies/order', {
         method: "POST",
         headers: {
@@ -127,31 +127,35 @@ inputValidation.addEventListener('click', function(evt){
         },
         body: JSON.stringify(postForm),
     })
-    .then(response =>{
-        if(response.ok){
-            return response.json().then(data => {
-                localStorage.clear();
-                localStorage.setItem("orderId", data.orderId)
-                location.href = 'order.html'
+        .then(response => {
+            if (response.ok) {
+                return response.json().then(data => {
+                    localStorage.clear();
+                    localStorage.setItem("orderId", data.orderId)
+                    location.href = 'order.html'
 
-            })
-        };
-    })
+                })
+            };
+        })
 });
 
 console.log(postForm)
 
+
+
+// ************************************************************************ SERIE DE VALIDATION FORM ************************************************************************
+
 // Validation caractère Email
 const validateEmail = function (mail) {
- 
+
     const emailRegExp = new RegExp(
-        
+
         '^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$',
         'g'
     );
     let testEmail = emailRegExp.test(mail.value);
     let small = inputMail.nextElementSibling;
-    if(testEmail) {
+    if (testEmail) {
         small.innerHTML = 'Adresse email valide';
         small.classList.remove('text-danger');
         small.classList.add('text-success');
@@ -163,7 +167,7 @@ const validateEmail = function (mail) {
     }
 };
 
-inputMail.addEventListener('change', function(){
+inputMail.addEventListener('change', function () {
 
     validateEmail(this);
 });
@@ -172,7 +176,7 @@ inputMail.addEventListener('change', function(){
 
 
 //Validation caratère Nom de famille !!
-const validateLastName = function(lastName){
+const validateLastName = function (lastName) {
 
     const lastNameRegExp = new RegExp(
         '^[A-Za-z]{1,20}$',
@@ -180,7 +184,7 @@ const validateLastName = function(lastName){
     );
     let testLastName = lastNameRegExp.test(lastName.value)
     let small = inputLastName.nextElementSibling;
-    if(testLastName) {
+    if (testLastName) {
         small.innerHTML = 'Nom valide';
         small.classList.remove('text-danger');
         small.classList.add('text-success');
@@ -193,11 +197,11 @@ const validateLastName = function(lastName){
 };
 
 
-inputLastName.addEventListener('change', function(){
+inputLastName.addEventListener('change', function () {
     validateLastName(this);
 });
 //Validation caratère Prénom !!
-const validateFirstName = function(firstName){
+const validateFirstName = function (firstName) {
 
     const firstNameRegExp = new RegExp(
         '^[A-Za-z]{1,20}$',
@@ -205,7 +209,7 @@ const validateFirstName = function(firstName){
     );
     let testFirstName = firstNameRegExp.test(firstName.value)
     let small = inputFirstName.nextElementSibling;
-    if(testFirstName) {
+    if (testFirstName) {
         small.innerHTML = 'Prénom valide';
         small.classList.remove('text-danger');
         small.classList.add('text-success');
@@ -217,13 +221,13 @@ const validateFirstName = function(firstName){
     }
 };
 
-inputLastName.addEventListener('change', function(){
+inputLastName.addEventListener('change', function () {
     validateFirstName(this);
 });
 
 
 //Validation caratère Ville !!
-const validateCity = function(city) {
+const validateCity = function (city) {
 
     const cityRegExp = new RegExp(
         '^[a-zA-Z-\\s]{1,50}$',
@@ -231,7 +235,7 @@ const validateCity = function(city) {
     )
     let testCity = cityRegExp.test(city.value)
     let small = inputCity.nextElementSibling;
-    if(testCity) {
+    if (testCity) {
         small.innerHTML = 'Ville valide';
         small.classList.remove('text-danger');
         small.classList.add('text-success');
@@ -242,13 +246,13 @@ const validateCity = function(city) {
         small.classList.add('text-danger');
     }
 };
-inputCity.addEventListener('change', function(){
+inputCity.addEventListener('change', function () {
     validateCity(this);
 });
 
 
 //Validation caratère Adresse !!
-const validateAdress = function(adresse) {
+const validateAdress = function (adresse) {
 
     const adresseRegExp = new RegExp(
         '^[a-zA-Z0-9-_\\s]{1,50}$',
@@ -256,7 +260,7 @@ const validateAdress = function(adresse) {
     )
     let testAdress = adresseRegExp.test(adresse.value)
     let small = inputAdress.nextElementSibling;
-    if(testAdress) {
+    if (testAdress) {
         small.innerHTML = 'Adresse valide';
         small.classList.remove('text-danger');
         small.classList.add('text-success');
@@ -267,6 +271,9 @@ const validateAdress = function(adresse) {
         small.classList.add('text-danger');
     }
 };
-inputAdress.addEventListener('change', function(){
+inputAdress.addEventListener('change', function () {
     validateAdress(this);
 })
+
+
+// ************************************************************************************************************************************************
