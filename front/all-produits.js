@@ -5,6 +5,7 @@ const nameProduit = document.getElementById('nom-produit');
 const imgProduit = document.getElementById('img-produit');
 const mainProduit = document.getElementById('main-produit');
 const buttonAddPanier = document.querySelector('.add-panier');
+
 const allTeddies = function () {
     fetch("http://localhost:3000/api/teddies")
         .then(response => {

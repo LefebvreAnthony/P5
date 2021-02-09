@@ -1,11 +1,8 @@
 
-const buttonAllProducts = document.getElementById('all-products');
-const congrat = document.getElementById("congrat");
-let orderId = localStorage.getItem('orderId');
-
 //button Nos produits
-buttonAllProducts.addEventListener('click', function(){
+document.getElementById('all-products').addEventListener('click', function(){
     window.location.href = '../index.html';
 });
 
-congrat.innerHTML = `Félicitation votre commande ${orderId} a bien été passée`;
+//Afficher numéro commande
+document.getElementById("congrat").innerHTML = `Félicitation votre commande ${localStorage.getItem('orderId')} a bien été passée`;
