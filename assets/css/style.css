@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
 
 body{
@@ -9,10 +8,6 @@ img{
     width: 100%;
     height: 100%;
 }
-/*.img-produit{
-    width: 100%;
-    height: 100%; 
-}*/
 .img-logo{
     width: 50px;
     height: 50px;
@@ -37,6 +32,7 @@ img{
     display: flex;
     justify-content: space-between;
 }
+
 @media screen and (max-width: 576px){
     .logo-add-panier{
         display: flex;
@@ -44,16 +40,11 @@ img{
     .text-add-panier{
         display: none;
     }
-    
     .main-produit{
         margin-bottom: 10rem;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-    }
-    #main-cart{
-        margin-left: 0;
-        margin-right: 0;
     }
 }
