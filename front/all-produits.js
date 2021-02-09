@@ -34,7 +34,7 @@ const allTeddies = function () {
                             });
 
                             // Ajouter item dans LocalStorage
-                            addCard.querySelector('.add-panier').addEventListener('click', event => {
+                            addCard.querySelector('.add-panier').addEventListener('click', function() {
                                 let cart = localStorage.getItem('cart');
                                 if (cart == null) {
                                     cart = [

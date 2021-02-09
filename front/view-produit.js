@@ -1,71 +1,64 @@
 
-let imgProduit = document.getElementById('img-produit');
-let descriptionProduit = document.getElementById('description-produit');
-let colorSelect = document.getElementById('color-produit');
-let nameProduit = document.getElementsByClassName('name-produit');
-let priceProduit = document.getElementById('price-produit');
-const buttonAddPanier = document.getElementById('add-panier');
+const params = new URLSearchParams(location.search);
 
+// Afficher produit selon l'id de l'url
+const focusTeddie = function () {
+    fetch(`http://localhost:3000/api/teddies/${params.get('id')}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json().then(data => {
+                    try {
 
-const focusTeddie = async function () {
+                        document.getElementById('description-produit').innerText = data.description;
+                        document.getElementById('price-produit').innerText = "prix : " + data.price + " €";
+                        document.getElementById('img-produit').src = data.imageUrl;
 
-    const params = new URLSearchParams(location.search)
+                        Array.from(document.getElementsByClassName('name-produit')).forEach(function (element) {
+                            element.innerText = data.name;
+                        });
 
-    let response = await fetch(`http://localhost:3000/api/teddies/${params.get('id')}`);
-    if (response.ok) {
+                        // Boucle pour afficher la selection de couleur pour teddie
+                        data.colors.forEach(function (element, key) {
+                            document.getElementById('color-produit')[key] = new Option(element, key);
+                        });
 
-        const data = await response.json();
-        //console.log(data);
+                        // Ajouter item dans LocalStorage
+                        document.getElementById('add-panier').addEventListener('click', function () {
+                            let cart = localStorage.getItem('cart');
 
-        const produit = data;
-        //console.log(produit);
-        descriptionProduit.innerText = produit.description;
-        priceProduit.innerText = "prix : " + produit.price + " €";
-
-        Array.from(nameProduit).forEach(function (element) {
-            element.innerText = produit.name
-        })
-
-        const optionColor = produit.colors;
-        //console.log(optionColor);
-
-        optionColor.forEach(function (element, key) {
-            colorSelect[key] = new Option(element, key);
-        })
-
-        console.log(produit._id)
-        imgProduit.src = produit.imageUrl;
-        buttonAddPanier.addEventListener('click', event => {
-
-            let cart = localStorage.getItem('cart');
-
-            if (cart == null) {
-                cart = [
-                    {
-                        'name': produit.name,
-                        'id': produit._id,
-                        'quantity': 1,
-                        'price': produit.price,
-                        'img': produit.imageUrl,
+                            if (cart == null) {
+                                cart = [
+                                    {
+                                        'name': data.name,
+                                        'id': data._id,
+                                        'quantity': 1,
+                                        'price': data.price,
+                                        'img': data.imageUrl,
+                                    }
+                                ]
+                            } else {
+                                cart = JSON.parse(cart)
+                                let finded = 0;
+                                for (let i = 0; i < cart.length; i++) {
+                                    if (data.name === cart[i].name) {
+                                        cart[i].quantity += 1;
+                                        finded = 1;
+                                        break
+                                    }
+                                }
+                                if (!finded) {
+                                    cart.push({ 'name': data.name, 'id': data._id, 'quantity': 1, 'price': data.price, 'img': data.imageUrl, })
+                                }
+                            }
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                        });
                     }
-                ]
-            } else {
-                cart = JSON.parse(cart)
-                let finded = 0;
-                for (let i = 0; i < cart.length; i++) {
-                    if (produit.name === cart[i].name) {
-                        cart[i].quantity += 1;
-                        finded = 1;
-                        break
+                    catch (e) {
+                        console.log('Erreur ' + e)
                     }
-                }
-                if (!finded) {
-                    cart.push({ 'name': produit.name, 'id': produit._id, 'quantity': 1, 'price': produit.price, 'img': produit.imageUrl, })
-                }
+                })
             }
-            localStorage.setItem('cart', JSON.stringify(cart));
-        });
-    }
+        })
 };
 
 focusTeddie();
