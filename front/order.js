@@ -5,4 +5,4 @@ document.getElementById('all-products').addEventListener('click', function(){
 });
 
 //Afficher numéro commande
-document.getElementById("congrat").innerHTML = `Félicitation votre commande ${localStorage.getItem('orderId')} a bien été passée`;
+document.getElementById("congrat").innerHTML = `Félicitation votre commande ${localStorage.getItem('orderId')} à bien été passée`;

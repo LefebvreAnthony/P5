@@ -32,9 +32,10 @@ const viewCart = function () {
                 //Calcul prix des articles
                 let cartPrice = objCartParse[i].price * objCartParse[i].quantity;
                 document.getElementById('price-cart').innerHTML = cartPrice + " €";
-                totalPrice += cartPrice;
 
                 //Calcul total prix du panier
+                totalPrice += cartPrice;
+                
                 const addCard = produitCart.cloneNode(true);
                 mainCart.appendChild(addCard);
 
@@ -47,6 +48,7 @@ const viewCart = function () {
         }
         else {
             document.getElementById('main-produit').removeChild(mainCart);
+
             //suprimer bouton vider panier
             document.getElementById('parent-button').removeChild(buttonClear);
         }
